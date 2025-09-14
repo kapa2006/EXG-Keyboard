@@ -1,0 +1,5 @@
+{
+  "serial_port": "/dev/cu.usbmodem21301",
+  "baud_rate": 115200,
+  "scan_speed": 20
+}
