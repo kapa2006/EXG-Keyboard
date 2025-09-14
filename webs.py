@@ -10,8 +10,15 @@ st.set_page_config(page_title="BlinkShift - EOG Keyboard", layout="wide")
 st.sidebar.header("Connection / Settings")
 
 port = st.sidebar.text_input("Serial port (e.g. COM3 or /dev/ttyUSB0)", value="COM3")
-baud = st.sidebar.number_input("Baud rate", value=115200, step=1)
-poll_interval = st.sidebar.slider("Poll interval (s)", min_value=0.05, max_value=1.0, value=0.2, step=0.05)
+
+# ✅ Replace number_input with a dropdown of common baud rates
+baud_rates = [300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600]
+baud = st.sidebar.selectbox("Baud rate", baud_rates, index=baud_rates.index(115200))
+
+poll_interval = st.sidebar.slider(
+    "Poll interval (s)", 
+    min_value=0.05, max_value=1.0, value=0.2, step=0.05
+)
 
 if "connected" not in st.session_state:
     st.session_state.connected = False
